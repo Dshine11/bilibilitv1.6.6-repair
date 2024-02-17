@@ -1,0 +1,34 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - main  # 适应你的主分支
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # 使用最新的Ubuntu环境，可以根据需要更改
+
+    steps:
+    - name: Set up JDK
+      uses: actions/setup-java@v2
+      with:
+        distribution: 'adopt'
+        java-version: '8'  # 使用Java 8，根据你的要求更改
+
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Install Dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y apktool
+
+    - name: Compile Java Classes
+      run: |
+        cd mybv/java
+        ./build.sh
+        cd ../..
+
+    - name: Build APK
+      run: ./build.sh
