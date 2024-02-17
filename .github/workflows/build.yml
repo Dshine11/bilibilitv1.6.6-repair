@@ -11,13 +11,13 @@ jobs:
 
     steps:
     - name: Set up JDK
-      uses: actions/setup-java@v2.5.0
+      uses: actions/setup-java@latest
       with:
         distribution: 'adopt'
         java-version: '8'  # 使用Java 8，根据你的要求更改
 
     - name: Checkout Repository
-      uses: actions/checkout@v2.5.0
+      uses: actions/checkout@latest
 
     - name: Install Dependencies
       run: |
