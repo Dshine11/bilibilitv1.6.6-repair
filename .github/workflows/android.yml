@@ -1,0 +1,31 @@
+name: Build and Test
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y apktool openjdk-8-jdk
+
+    - name: Set up Java 8
+      run: sudo update-alternatives --set javac /usr/lib/jvm/java-8-openjdk-amd64/bin/javac
+
+    - name: Compile Java classes
+      run: |
+        cd mybv/java
+        ./build.sh
+        cd ../..
+
+    - name: Compile APK
+      run: ./build.sh
