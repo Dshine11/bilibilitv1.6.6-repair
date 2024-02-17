@@ -29,6 +29,9 @@ jobs:
         cd mybv/java
         ./build.sh
         cd ../..
+    
+    - name: List Current Directioy
+      run: Is    
 
     - name: Build APK
       run: ./build.sh
